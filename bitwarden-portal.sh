@@ -223,7 +223,7 @@ printf '\n'
 #---------------#
 
 echo "# Exporting all items..."
-bw --session "$SOURCE_SESSION" export --raw --format json > "$SOURCE_OUTPUT_FILE_PATH"
+bw --session "$SOURCE_SESSION" export --raw --format json $SOURCE_ORGANIZATIONID_PARAMETER > "$SOURCE_OUTPUT_FILE_PATH"
 
 if [ $? -ne 0 ]; then
     echo "✕ Error: Failed to export data."
@@ -329,7 +329,7 @@ printf '\n'
 
 # Export what's currently in the vault, so we can remove it
 echo "# Exporting current items from destination vault..."
-bw --session "$DEST_SESSION" export --raw --format json > "$DEST_OUTPUT_FILE_PATH"
+bw --session "$DEST_SESSION" export --raw --format json $DEST_ORGANIZATIONID_PARAMETER > "$DEST_OUTPUT_FILE_PATH"
 
 if [ $? -ne 0 ]; then
     echo "✕ Error: Failed to export data."
@@ -447,7 +447,7 @@ fix_permissions "$PUID" "$PGID" "$DECRYPTED_SOURCE_OUTPUT_FILE_PATH"
 
 # Import the decrypted backup
 echo "# Importing the decrypted backup: $DECRYPTED_SOURCE_OUTPUT_FILE_PATH"
-bw --session "$DEST_SESSION" --raw import bitwardenjson "$DECRYPTED_SOURCE_OUTPUT_FILE_PATH"
+bw --session "$DEST_SESSION" --raw import bitwardenjson "$DECRYPTED_SOURCE_OUTPUT_FILE_PATH" $DEST_ORGANIZATIONID_PARAMETER
 if [ $? -ne 0 ]; then
     echo "✕ Error: Failed to import data."
     exit 1
