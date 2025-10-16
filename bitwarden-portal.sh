@@ -169,6 +169,13 @@ SOURCE_OUTPUT_FILE_PATH="$TEMP_FOLDER/$SOURCE_NEW_FILENAME"
 # Encrypted file stored in source backup folder
 ENCRYPTED_SOURCE_OUTPUT_FILE_PATH="$SOURCE_FOLDER/$SOURCE_NEW_FILENAME.enc"
 
+# Check if organization ID is set for source
+if [ -n "$SOURCE_ORGANIZATION_ID" ]; then
+    SOURCE_ORGANIZATIONID_PARAMETER="--organizationid \"$SOURCE_ORGANIZATION_ID\""
+else
+    SOURCE_ORGANIZATIONID_PARAMETER=""
+fi
+
 
 #--------------#
 # SOURCE PURGE #
@@ -280,6 +287,12 @@ DEST_OUTPUT_FILE_PATH="$TEMP_FOLDER/$DEST_NEW_FILENAME"
 # Encrypted file stored in destination backup folder
 ENCRYPTED_DEST_OUTPUT_FILE_PATH="$DEST_FOLDER/$DEST_NEW_FILENAME.enc"
 
+# Check if organization ID is set for destination
+if [ -n "$DEST_ORGANIZATION_ID" ]; then
+    DEST_ORGANIZATIONID_PARAMETER="--organizationid \"$DEST_ORGANIZATION_ID\""
+else
+    DEST_ORGANIZATIONID_PARAMETER=""
+fi
 
 #------------#
 # DEST PURGE #
